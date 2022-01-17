@@ -90,3 +90,14 @@ def reproducibility():
     sales = get_sales_df()
     df = merge_dfs(sales, stores, items)
     return df
+
+
+def get_power_data():
+    if os.path.isfile('opsd_germany_daily_data.csv') == False:
+        print("Data is not cached. Acquiring new power data.")
+        opsd = new_power_data()
+    else:
+        print("Data is cached. Reading data from .csv file.")
+        opsd = pd.read_csv('opsd_germany_daily_data.csv')
+    print("Acquisition complete")
+    return opsd
